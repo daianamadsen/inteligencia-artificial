@@ -48,6 +48,7 @@ public class Preprocessor {
                     errorCounter++;
                 }
             }
+            w.close();
             System.out.println("Se escribieron correctamente "+okCounter+" opiniones. ("+errorCounter+" opiniones con error)");
             Logger.getLogger(Preprocessor.class.getName()).log(Level.FINE, "Se escribieron correctamente {0} opiniones. ({1} opiniones con error)", new Object[]{okCounter, errorCounter});
         } catch (Exception e) {

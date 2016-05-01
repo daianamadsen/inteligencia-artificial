@@ -17,4 +17,6 @@ public interface Writer {
 
     public boolean insertHeader(ArrayList<ArrayList<String>> header,  ArrayList<String> genres);
     
+    public void close();
+    
 }

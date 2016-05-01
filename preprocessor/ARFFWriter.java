@@ -14,6 +14,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * ARFFWriter
@@ -73,4 +75,13 @@ public class ARFFWriter implements Writer {
         return true;
     }
 
+    @Override
+    public void close() {
+        try {
+            writer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ARFFWriter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }
