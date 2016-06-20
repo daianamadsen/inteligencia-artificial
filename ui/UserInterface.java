@@ -10,10 +10,13 @@
 package ui;
 
 import java.awt.Toolkit;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -23,6 +26,7 @@ import static preprocessor.Preprocessor.preprocess;
 /**
  * User Interface
  * Provee una interfaz para obtener un archivo .arff a partir de un archivo .csv
+ * Se proveen dos opciones de procesamiento: generos como atributos individuales, generos por grupos predefinidos.
  * 
  * @author Juan Valacco
  * @author Daiana Madsen
@@ -40,7 +44,7 @@ public class UserInterface extends javax.swing.JDialog {
     public UserInterface(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();//Icono de la aplicación
-        URL icono = getClass().getResource("/ui/icono.png");
+        URL icono = getClass().getResource("/ui/app-icono.png");
         setIconImage(Toolkit.getDefaultToolkit().getImage(icono));
         setLocationRelativeTo(null);//Centra form
         resultado.setText("");
@@ -55,6 +59,7 @@ public class UserInterface extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        rb = new javax.swing.ButtonGroup();
         panel_1 = new javax.swing.JPanel();
         titulo_1 = new javax.swing.JLabel();
         linea_1 = new javax.swing.JLabel();
@@ -66,30 +71,38 @@ public class UserInterface extends javax.swing.JDialog {
         df_subtitulo = new javax.swing.JLabel();
         df_destino = new javax.swing.JTextField();
         df_boton = new javax.swing.JButton();
+        panel_3 = new javax.swing.JPanel();
+        titulo_3 = new javax.swing.JLabel();
+        rb_individual = new javax.swing.JRadioButton();
+        rb_individual_2 = new javax.swing.JRadioButton();
+        rb_grupal = new javax.swing.JRadioButton();
+        rb_reducido = new javax.swing.JRadioButton();
+        panel_4 = new javax.swing.JPanel();
         preprocesar = new javax.swing.JButton();
         resultado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Preprocesador");
 
-        panel_1.setBackground(new java.awt.Color(255, 255, 255));
+        panel_1.setBackground(new java.awt.Color(234, 234, 234));
 
-        titulo_1.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
-        titulo_1.setForeground(new java.awt.Color(99, 99, 99));
+        titulo_1.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
+        titulo_1.setForeground(new java.awt.Color(213, 118, 0));
         titulo_1.setText("Preprocesador");
 
+        linea_1.setBackground(new java.awt.Color(51, 51, 51));
         linea_1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        linea_1.setForeground(new java.awt.Color(231, 231, 231));
-        linea_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(231, 231, 231)));
+        linea_1.setForeground(new java.awt.Color(51, 51, 51));
+        linea_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(213, 118, 0)));
         linea_1.setIconTextGap(1);
         linea_1.setMaximumSize(new java.awt.Dimension(1, 1));
         linea_1.setMinimumSize(new java.awt.Dimension(1, 1));
         linea_1.setPreferredSize(new java.awt.Dimension(1, 1));
 
-        panel_2.setBackground(new java.awt.Color(255, 255, 255));
+        panel_2.setBackground(new java.awt.Color(234, 234, 234));
 
         titulo_2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        titulo_2.setForeground(new java.awt.Color(22, 160, 133));
+        titulo_2.setForeground(new java.awt.Color(99, 99, 99));
         titulo_2.setText("Generación de un archivo .arff a partir de un dataset .csv");
 
         ds_subtitulo.setForeground(new java.awt.Color(99, 99, 99));
@@ -140,25 +153,6 @@ public class UserInterface extends javax.swing.JDialog {
             }
         });
 
-        preprocesar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/btn-preprocesar.png"))); // NOI18N
-        preprocesar.setBorder(null);
-        preprocesar.setBorderPainted(false);
-        preprocesar.setContentAreaFilled(false);
-        preprocesar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        preprocesar.setFocusPainted(false);
-        preprocesar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        preprocesar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/btn-preprocesar-active.png"))); // NOI18N
-        preprocesar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        preprocesar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                preprocesarActionPerformed(evt);
-            }
-        });
-
-        resultado.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        resultado.setForeground(new java.awt.Color(22, 160, 133));
-        resultado.setText("Listo!");
-
         javax.swing.GroupLayout panel_2Layout = new javax.swing.GroupLayout(panel_2);
         panel_2.setLayout(panel_2Layout);
         panel_2Layout.setHorizontalGroup(
@@ -175,12 +169,8 @@ public class UserInterface extends javax.swing.JDialog {
                 .addGroup(panel_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(titulo_2)
                     .addComponent(ds_subtitulo)
-                    .addGroup(panel_2Layout.createSequentialGroup()
-                        .addComponent(preprocesar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(resultado))
                     .addComponent(df_subtitulo))
-                .addGap(0, 63, Short.MAX_VALUE))
+                .addGap(0, 71, Short.MAX_VALUE))
         );
         panel_2Layout.setVerticalGroup(
             panel_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,11 +188,110 @@ public class UserInterface extends javax.swing.JDialog {
                 .addGroup(panel_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(df_destino, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(df_boton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(panel_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(preprocesar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panel_3.setBackground(new java.awt.Color(234, 234, 234));
+
+        titulo_3.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        titulo_3.setForeground(new java.awt.Color(99, 99, 99));
+        titulo_3.setText("Tipo de procesamiento:");
+
+        rb_individual.setBackground(new java.awt.Color(234, 234, 234));
+        rb.add(rb_individual);
+        rb_individual.setForeground(new java.awt.Color(99, 99, 99));
+        rb_individual.setText("Géneros como atributos individuales");
+        rb_individual.setToolTipText("Se toman todos los géneros como distintos atributos del dataset, y se indica si tiene el género o no.");
+
+        rb_individual_2.setBackground(new java.awt.Color(234, 234, 234));
+        rb.add(rb_individual_2);
+        rb_individual_2.setForeground(new java.awt.Color(99, 99, 99));
+        rb_individual_2.setSelected(true);
+        rb_individual_2.setText("Géneros como atributos individuales (con datos no disponibles)");
+        rb_individual_2.setToolTipText("Se toman todos los géneros como distintos atributos del dataset, y se indica si tiene el género. Si no lo tiene se coloca un signo de interrogación.");
+
+        rb_grupal.setBackground(new java.awt.Color(234, 234, 234));
+        rb.add(rb_grupal);
+        rb_grupal.setForeground(new java.awt.Color(99, 99, 99));
+        rb_grupal.setText("Géneros agrupados como único atributo");
+        rb_grupal.setToolTipText("Se agrupan los géneros en seis clases que serán los valores que puede tomar el atributo género.");
+
+        rb.add(rb_reducido);
+        rb_reducido.setForeground(new java.awt.Color(99, 99, 99));
+        rb_reducido.setText("Atributos reducidos");
+        rb_reducido.setToolTipText("Se agrupan los géneros en seis tipos, se eliminan atributos (actor, director y año) y se agrupan las valoraciones en malas, regulares y buenas.");
+
+        javax.swing.GroupLayout panel_3Layout = new javax.swing.GroupLayout(panel_3);
+        panel_3.setLayout(panel_3Layout);
+        panel_3Layout.setHorizontalGroup(
+            panel_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_3Layout.createSequentialGroup()
+                .addGroup(panel_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(titulo_3)
+                    .addGroup(panel_3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panel_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rb_individual)
+                            .addComponent(rb_grupal)
+                            .addComponent(rb_reducido)
+                            .addComponent(rb_individual_2))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panel_3Layout.setVerticalGroup(
+            panel_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titulo_3)
+                .addGap(18, 18, 18)
+                .addComponent(rb_individual)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_individual_2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_grupal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_reducido)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        panel_4.setBackground(new java.awt.Color(234, 234, 234));
+
+        preprocesar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/btn-preprocesar.png"))); // NOI18N
+        preprocesar.setBorder(null);
+        preprocesar.setBorderPainted(false);
+        preprocesar.setContentAreaFilled(false);
+        preprocesar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        preprocesar.setFocusPainted(false);
+        preprocesar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        preprocesar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/btn-preprocesar-active.png"))); // NOI18N
+        preprocesar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        preprocesar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                preprocesarActionPerformed(evt);
+            }
+        });
+
+        resultado.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        resultado.setForeground(new java.awt.Color(213, 118, 0));
+        resultado.setText("Listo!");
+
+        javax.swing.GroupLayout panel_4Layout = new javax.swing.GroupLayout(panel_4);
+        panel_4.setLayout(panel_4Layout);
+        panel_4Layout.setHorizontalGroup(
+            panel_4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panel_4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(resultado)
+                    .addComponent(preprocesar)))
+        );
+        panel_4Layout.setVerticalGroup(
+            panel_4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(preprocesar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout panel_1Layout = new javax.swing.GroupLayout(panel_1);
@@ -210,16 +299,20 @@ public class UserInterface extends javax.swing.JDialog {
         panel_1Layout.setHorizontalGroup(
             panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addGroup(panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_1Layout.createSequentialGroup()
-                        .addComponent(titulo_1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_1Layout.createSequentialGroup()
                         .addGroup(panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(panel_2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(linea_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(20, 20, 20))))
+                            .addComponent(linea_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(panel_1Layout.createSequentialGroup()
+                                .addComponent(panel_3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(16, 16, 16)
+                                .addComponent(panel_4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(20, 20, 20))
+                    .addGroup(panel_1Layout.createSequentialGroup()
+                        .addComponent(titulo_1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panel_1Layout.setVerticalGroup(
             panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,22 +323,22 @@ public class UserInterface extends javax.swing.JDialog {
                 .addComponent(linea_1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(panel_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panel_4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panel_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(panel_1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panel_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panel_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -300,19 +393,41 @@ public class UserInterface extends javax.swing.JDialog {
         return fullPath;
     }
     
+    private int obtenerTipoProcesamiento() {
+        if (rb_individual.isSelected()) {
+            return 1;
+        }
+        if (rb_individual_2.isSelected()) {
+            return 2;
+        }
+        if (rb_grupal.isSelected()) {
+            return 3;
+        }
+        if (rb_reducido.isSelected()) {
+            return 4;
+        }
+        return 0;
+    }
+    
     private void preprocesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preprocesarActionPerformed
+        resultado.setText("");
         String origen = ds_origen.getText();
         String destino = df_destino.getText();
         if (origen.isEmpty() || destino.isEmpty()) {
             JOptionPane.showMessageDialog(new JFrame(), "Falta elegir origen y/o destino.");
         } else {
+            String result = "Error";
             destino = completarDestino(destino);
             if (!destino.equals("")) {
-                preprocess(origen, destino);
-                resultado.setText("Listo!");
-            } else {
-                resultado.setText("Error");
+                try {
+                    if (preprocess(origen, destino, obtenerTipoProcesamiento())) {
+                        result = "Listo!";
+                    }
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(UserInterface.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+            resultado.setText(result);
         }
     }//GEN-LAST:event_preprocesarActionPerformed
 
@@ -372,10 +487,18 @@ public class UserInterface extends javax.swing.JDialog {
     private javax.swing.JLabel linea_1;
     private javax.swing.JPanel panel_1;
     private javax.swing.JPanel panel_2;
+    private javax.swing.JPanel panel_3;
+    private javax.swing.JPanel panel_4;
     private javax.swing.JButton preprocesar;
+    private javax.swing.ButtonGroup rb;
+    private javax.swing.JRadioButton rb_grupal;
+    private javax.swing.JRadioButton rb_individual;
+    private javax.swing.JRadioButton rb_individual_2;
+    private javax.swing.JRadioButton rb_reducido;
     public javax.swing.JLabel resultado;
     private javax.swing.JLabel titulo_1;
     public javax.swing.JLabel titulo_2;
+    public javax.swing.JLabel titulo_3;
     // End of variables declaration//GEN-END:variables
 
 }

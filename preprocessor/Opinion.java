@@ -10,6 +10,7 @@
 package preprocessor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 /**
@@ -25,30 +26,22 @@ class Opinion {
     private String age;
     private String film;
     private String actor;
-    private ArrayList<String> genres;
+    private String genre;
     private String director;
     private String year;
     private String valoracion;
-
-    public Opinion() {
+    
+    @Override
+    public String toString() {
+        return sex + "," + age + "," + actor + "," + genre + "," + director + "," + year + "," + valoracion;
     }
     
-    public String toString(ArrayList<String> allGenres) {
-        return sex + "," + age + "," + actor + "," + director + "," + year + "," + valoracion + splitGenres(allGenres);
+    public String toSplitedString(ArrayList<String> genres, boolean acceptND) {
+        return sex + "," + age + "," + actor + "," + split(genres, acceptND) + "," + director + "," + year + "," + valoracion;
     }
     
-    private String splitGenres(ArrayList<String> allGenres) {
-        Iterator<String> i = allGenres.iterator();
-        String g = ",";
-        while (i.hasNext()) {
-            if (genres.contains(i.next())) {
-                g += "1,";
-            } else {
-                g += "0,";
-            }
-        }
-        g = g.substring(0, g.length()-1);
-        return g;
+    public String toReducedString() {
+        return sex + "," + age + "," + genre + "," + year + "," + valoracion;
     }
 
     public String getSex() {
@@ -83,12 +76,12 @@ class Opinion {
         this.actor = actor;
     }
 
-    public ArrayList<String> getGenres() {
-        return genres;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setGenres(ArrayList<String> genres) {
-        this.genres = genres;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public String getDirector() {
@@ -113,6 +106,25 @@ class Opinion {
 
     public void setValoracion(String valoracion) {
         this.valoracion = valoracion;
+    }
+    
+    private String split(ArrayList<String> allGenres, boolean acceptND) {
+        String no_data = "0,";
+        if (acceptND) {
+            no_data = "?,";
+        }
+        ArrayList<String> opGenres = new ArrayList<String>(Arrays.asList(genre.split("\\|")));
+        Iterator<String> i = allGenres.iterator();
+        String g = ",";
+        while (i.hasNext()) {
+            if (opGenres.contains(i.next())) {
+                g += "1,";
+            } else {
+                g += no_data;
+            }
+        }
+        g = g.substring(0, g.length()-1);
+        return g;
     }
     
 }

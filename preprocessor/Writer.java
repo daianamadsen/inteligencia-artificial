@@ -11,12 +11,21 @@ package preprocessor;
 
 import java.util.ArrayList;
 
+/**
+ * Writer
+ * Escribe en un archivo.
+ * Primero se debe insertar encabezado y datos.
+ * Luego, se puede construir el archivo en un path dado.
+ * 
+ * @author Juan Valacco
+ * @author Daiana Madsen
+ */
 public interface Writer {
     
-    public boolean write(Opinion opinion, ArrayList<String> genres);
+    public boolean insertData(ArrayList<String> data);
 
-    public boolean insertHeader(ArrayList<ArrayList<String>> header,  ArrayList<String> genres);
+    public boolean insertHeader(ArrayList<String> header);
     
-    public void close();
+    public boolean buildFile(String path);
     
 }

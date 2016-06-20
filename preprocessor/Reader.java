@@ -11,12 +11,23 @@ package preprocessor;
 
 import java.util.ArrayList;
 
+/**
+ * Reader
+ * Lee a partir de un archivo.
+ * Primero se debe inicializar, utilizando el método readData para leer todo el archivo.
+ * Luego, se puede obtener encabezado y datos.
+ * 
+ * @author Juan Valacco
+ * @author Daiana Madsen
+ */
 public interface Reader {
     
-    public Opinion read();
+    public void initReader();
     
-    public ArrayList<ArrayList<String>> getHeader();
+    public Opinion readData();
     
-    public ArrayList<String> getGenres();
+    public ArrayList<String> getData();
+    
+    public ArrayList<String> getHeader();
     
 }
