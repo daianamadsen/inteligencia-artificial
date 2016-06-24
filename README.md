@@ -1,4 +1,4 @@
-Inteligencia Artificial
+# Inteligencia Artificial #
 
 Preprocesador
 
@@ -11,5 +11,6 @@ Preprocesador
     
 Versión 1.1
 
-* Incorpora nueva opción de preprocesamiento:
+* Incorpora nuevas opciones de preprocesamiento:
     - Generos como atributos individuales (con datos no disponibles)
+    - Valoración en grupos balanceados
