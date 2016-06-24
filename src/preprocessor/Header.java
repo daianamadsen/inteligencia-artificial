@@ -86,6 +86,10 @@ public class Header implements Iterable {
         }
         return false;
     }
+    
+    public void removeAttributes() {
+        buffers.clear();
+    }
 
     public ArrayList<String> getAttribute(String attribute) {
         Iterator<Buffer> i = buffers.iterator();

@@ -77,6 +77,9 @@ public class UserInterface extends javax.swing.JDialog {
         rb_individual_2 = new javax.swing.JRadioButton();
         rb_grupal = new javax.swing.JRadioButton();
         rb_reducido = new javax.swing.JRadioButton();
+        rb_reducido_2 = new javax.swing.JRadioButton();
+        rb_reducido_3 = new javax.swing.JRadioButton();
+        rb_reducido_4 = new javax.swing.JRadioButton();
         panel_4 = new javax.swing.JPanel();
         preprocesar = new javax.swing.JButton();
         resultado = new javax.swing.JLabel();
@@ -170,7 +173,7 @@ public class UserInterface extends javax.swing.JDialog {
                     .addComponent(titulo_2)
                     .addComponent(ds_subtitulo)
                     .addComponent(df_subtitulo))
-                .addGap(0, 71, Short.MAX_VALUE))
+                .addGap(0, 146, Short.MAX_VALUE))
         );
         panel_2Layout.setVerticalGroup(
             panel_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,26 +203,45 @@ public class UserInterface extends javax.swing.JDialog {
         rb_individual.setBackground(new java.awt.Color(234, 234, 234));
         rb.add(rb_individual);
         rb_individual.setForeground(new java.awt.Color(99, 99, 99));
-        rb_individual.setText("Géneros como atributos individuales");
+        rb_individual.setSelected(true);
+        rb_individual.setText("1- Géneros como atributos individuales");
         rb_individual.setToolTipText("Se toman todos los géneros como distintos atributos del dataset, y se indica si tiene el género o no.");
 
         rb_individual_2.setBackground(new java.awt.Color(234, 234, 234));
         rb.add(rb_individual_2);
         rb_individual_2.setForeground(new java.awt.Color(99, 99, 99));
-        rb_individual_2.setSelected(true);
-        rb_individual_2.setText("Géneros como atributos individuales (con datos no disponibles)");
+        rb_individual_2.setText("2- Géneros como atributos individuales (con datos no disponibles)");
         rb_individual_2.setToolTipText("Se toman todos los géneros como distintos atributos del dataset, y se indica si tiene el género. Si no lo tiene se coloca un signo de interrogación.");
 
         rb_grupal.setBackground(new java.awt.Color(234, 234, 234));
         rb.add(rb_grupal);
         rb_grupal.setForeground(new java.awt.Color(99, 99, 99));
-        rb_grupal.setText("Géneros agrupados como único atributo");
+        rb_grupal.setText("3- Géneros agrupados como único atributo");
         rb_grupal.setToolTipText("Se agrupan los géneros en seis clases que serán los valores que puede tomar el atributo género.");
 
+        rb_reducido.setBackground(new java.awt.Color(234, 234, 234));
         rb.add(rb_reducido);
         rb_reducido.setForeground(new java.awt.Color(99, 99, 99));
-        rb_reducido.setText("Atributos reducidos");
+        rb_reducido.setText("4- Atributos reducidos");
         rb_reducido.setToolTipText("Se agrupan los géneros en seis tipos, se eliminan atributos (actor, director y año) y se agrupan las valoraciones en malas, regulares y buenas.");
+
+        rb_reducido_2.setBackground(new java.awt.Color(234, 234, 234));
+        rb.add(rb_reducido_2);
+        rb_reducido_2.setForeground(new java.awt.Color(99, 99, 99));
+        rb_reducido_2.setText("5- Atributos reducidos con valoración balanceada (1)");
+        rb_reducido_2.setToolTipText("Se agrupan los géneros en seis tipos, se eliminan atributos (actor, director y año) y se agrupan las valoraciones en muy malas, malas, regulares, buenas, muy buenas y excelentes (en grupos balanceados)");
+
+        rb_reducido_3.setBackground(new java.awt.Color(234, 234, 234));
+        rb.add(rb_reducido_3);
+        rb_reducido_3.setForeground(new java.awt.Color(99, 99, 99));
+        rb_reducido_3.setText("6- Atributos reducidos con valoración balanceada (2)");
+        rb_reducido_3.setToolTipText("Se agrupan los géneros en seis tipos, se eliminan atributos (actor, director y año) y se agrupan las valoraciones en malas, regulares y buenas (en grupos balanceados)");
+
+        rb_reducido_4.setBackground(new java.awt.Color(234, 234, 234));
+        rb.add(rb_reducido_4);
+        rb_reducido_4.setForeground(new java.awt.Color(99, 99, 99));
+        rb_reducido_4.setText("7- Atributos reducidos con valoración balanceada (3)");
+        rb_reducido_4.setToolTipText("Se agrupan los géneros en seis tipos, se eliminan atributos (actor, director y año) y se agrupan las valoraciones en muy malas, malas, regulares, buenas y muy buenas (en grupos balanceados)");
 
         javax.swing.GroupLayout panel_3Layout = new javax.swing.GroupLayout(panel_3);
         panel_3.setLayout(panel_3Layout);
@@ -234,7 +256,10 @@ public class UserInterface extends javax.swing.JDialog {
                             .addComponent(rb_individual)
                             .addComponent(rb_grupal)
                             .addComponent(rb_reducido)
-                            .addComponent(rb_individual_2))))
+                            .addComponent(rb_individual_2)
+                            .addComponent(rb_reducido_2)
+                            .addComponent(rb_reducido_3)
+                            .addComponent(rb_reducido_4))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_3Layout.setVerticalGroup(
@@ -247,10 +272,16 @@ public class UserInterface extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rb_individual_2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rb_grupal)
+                .addComponent(rb_grupal, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rb_reducido)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_reducido_2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_reducido_3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_reducido_4)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         panel_4.setBackground(new java.awt.Color(234, 234, 234));
@@ -338,7 +369,9 @@ public class UserInterface extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -405,6 +438,15 @@ public class UserInterface extends javax.swing.JDialog {
         }
         if (rb_reducido.isSelected()) {
             return 4;
+        }
+        if (rb_reducido_2.isSelected()) {
+            return 5;
+        }
+        if (rb_reducido_3.isSelected()) {
+            return 6;
+        }
+        if (rb_reducido_4.isSelected()) {
+            return 7;
         }
         return 0;
     }
@@ -495,6 +537,9 @@ public class UserInterface extends javax.swing.JDialog {
     private javax.swing.JRadioButton rb_individual;
     private javax.swing.JRadioButton rb_individual_2;
     private javax.swing.JRadioButton rb_reducido;
+    private javax.swing.JRadioButton rb_reducido_2;
+    private javax.swing.JRadioButton rb_reducido_3;
+    private javax.swing.JRadioButton rb_reducido_4;
     public javax.swing.JLabel resultado;
     private javax.swing.JLabel titulo_1;
     public javax.swing.JLabel titulo_2;

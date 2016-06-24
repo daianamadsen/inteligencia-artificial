@@ -33,7 +33,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panel_1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="panel_1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -159,7 +162,7 @@
                           <Component id="ds_subtitulo" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="df_subtitulo" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="71" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="146" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -325,6 +328,9 @@
                                   <Component id="rb_grupal" min="-2" max="-2" attributes="0"/>
                                   <Component id="rb_reducido" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="rb_individual_2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rb_reducido_2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rb_reducido_3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rb_reducido_4" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -342,10 +348,16 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="rb_individual_2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="rb_grupal" min="-2" max="-2" attributes="0"/>
+                      <Component id="rb_grupal" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="rb_reducido" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="22" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="rb_reducido_2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="rb_reducido_3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="rb_reducido_4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="37" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -376,7 +388,8 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="63" green="63" red="63" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="G&#xe9;neros como atributos individuales"/>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="1- G&#xe9;neros como atributos individuales"/>
                 <Property name="toolTipText" type="java.lang.String" value="Se toman todos los g&#xe9;neros como distintos atributos del dataset, y se indica si tiene el g&#xe9;nero o no."/>
               </Properties>
             </Component>
@@ -391,8 +404,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="63" green="63" red="63" type="rgb"/>
                 </Property>
-                <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="G&#xe9;neros como atributos individuales (con datos no disponibles)"/>
+                <Property name="text" type="java.lang.String" value="2- G&#xe9;neros como atributos individuales (con datos no disponibles)"/>
                 <Property name="toolTipText" type="java.lang.String" value="Se toman todos los g&#xe9;neros como distintos atributos del dataset, y se indica si tiene el g&#xe9;nero. Si no lo tiene se coloca un signo de interrogaci&#xf3;n."/>
               </Properties>
             </Component>
@@ -407,20 +419,68 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="63" green="63" red="63" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="G&#xe9;neros agrupados como &#xfa;nico atributo"/>
+                <Property name="text" type="java.lang.String" value="3- G&#xe9;neros agrupados como &#xfa;nico atributo"/>
                 <Property name="toolTipText" type="java.lang.String" value="Se agrupan los g&#xe9;neros en seis clases que ser&#xe1;n los valores que puede tomar el atributo g&#xe9;nero."/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rb_reducido">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ea" green="ea" red="ea" type="rgb"/>
+                </Property>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="rb"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="63" green="63" red="63" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Atributos reducidos"/>
+                <Property name="text" type="java.lang.String" value="4- Atributos reducidos"/>
                 <Property name="toolTipText" type="java.lang.String" value="Se agrupan los g&#xe9;neros en seis tipos, se eliminan atributos (actor, director y a&#xf1;o) y se agrupan las valoraciones en malas, regulares y buenas."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rb_reducido_2">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ea" green="ea" red="ea" type="rgb"/>
+                </Property>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="rb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="63" green="63" red="63" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="5- Atributos reducidos con valoraci&#xf3;n balanceada (1)"/>
+                <Property name="toolTipText" type="java.lang.String" value="Se agrupan los g&#xe9;neros en seis tipos, se eliminan atributos (actor, director y a&#xf1;o) y se agrupan las valoraciones en muy malas, malas, regulares, buenas, muy buenas y excelentes (en grupos balanceados)"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rb_reducido_3">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ea" green="ea" red="ea" type="rgb"/>
+                </Property>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="rb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="63" green="63" red="63" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="6- Atributos reducidos con valoraci&#xf3;n balanceada (2)"/>
+                <Property name="toolTipText" type="java.lang.String" value="Se agrupan los g&#xe9;neros en seis tipos, se eliminan atributos (actor, director y a&#xf1;o) y se agrupan las valoraciones en malas, regulares y buenas (en grupos balanceados)"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rb_reducido_4">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ea" green="ea" red="ea" type="rgb"/>
+                </Property>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="rb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="63" green="63" red="63" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="7- Atributos reducidos con valoraci&#xf3;n balanceada (3)"/>
+                <Property name="toolTipText" type="java.lang.String" value="Se agrupan los g&#xe9;neros en seis tipos, se eliminan atributos (actor, director y a&#xf1;o) y se agrupan las valoraciones en muy malas, malas, regulares, buenas y muy buenas (en grupos balanceados)"/>
               </Properties>
             </Component>
           </SubComponents>

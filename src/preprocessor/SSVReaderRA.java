@@ -28,7 +28,7 @@ import java.util.logging.Logger;
  */
 public class SSVReaderRA extends SSVReaderGG {
     
-    private Groups valuesGroups;
+    protected Groups valuesGroups;
     
     //Grupos predefinidos:
     protected static final String MALA = "Mala";
