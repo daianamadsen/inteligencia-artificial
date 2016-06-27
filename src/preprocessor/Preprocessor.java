@@ -32,9 +32,9 @@ public class Preprocessor {
             case 2: { r = new SSVReaderIIG(sourcePath);  break; }
             case 3: { r = new SSVReaderGG(sourcePath);   break; }
             case 4: { r = new SSVReaderRA(sourcePath);   break; }
-            case 5: { r = new SSVReaderBRA1(sourcePath); break; }
-            case 6: { r = new SSVReaderBRA2(sourcePath); break; }
-            case 7: { r = new SSVReaderBRA3(sourcePath); break; }
+            case 5: { r = new SSVReaderBGV1(sourcePath); break; }
+            case 6: { r = new SSVReaderBGV2(sourcePath); break; }
+            case 7: { r = new SSVReaderBGV3(sourcePath); break; }
             default: { r = null; break; }
         }
         if (r!=null) {

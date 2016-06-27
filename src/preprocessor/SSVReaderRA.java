@@ -26,23 +26,10 @@ import java.util.logging.Logger;
  * @author Juan Valacco
  * @author Daiana Madsen
  */
-public class SSVReaderRA extends SSVReaderGG {
-    
-    protected Groups valuesGroups;
-    
-    //Grupos predefinidos:
-    protected static final String MALA = "Mala";
-    protected static final String REGULAR = "Regular";
-    protected static final String BUENA = "Buena";
+public class SSVReaderRA extends SSVReaderGV {
     
     public SSVReaderRA(String path) throws FileNotFoundException {
     	super(path);
-        this.header.removeAttribute(ACTOR);
-        this.header.removeAttribute(DIRECTOR);
-        this.valuesGroups = new Groups();
-        this.valuesGroups.addAttribute(MALA, new ArrayList(Arrays.asList("0.5", "1.0", "1.5", "2.0")));
-        this.valuesGroups.addAttribute(REGULAR, new ArrayList(Arrays.asList("2.5", "3.0", "3.5")));
-        this.valuesGroups.addAttribute(BUENA, new ArrayList(Arrays.asList("4.0", "4.5", "5.0")));
     }
     
     //Consume una opinión
@@ -68,26 +55,6 @@ public class SSVReaderRA extends SSVReaderGG {
             Logger.getLogger(SSVReaderIG.class.getName()).log(Level.WARNING, "Error de lectura en el archivo fuente.", e);
         }
         return o;
-    }
-
-    //Se guarda el grupo de valoracion
-    @Override
-    protected String parseValoracion(String val) {
-        val = getClasificacion(val);  
-        super.header.addItem(SSVReaderIG.VALORACION, val);
-        return val;
-    }
-    
-    //Se busca el grupo que contiene el valor
-    private String getClasificacion(String val) {
-        Iterator<Header.Buffer> i = valuesGroups.iterator();
-        while (i.hasNext()) {
-            Header.Buffer group = i.next();
-            if (group.contains(val)) {
-                return group.getName();
-            }
-        }
-        return SSVReaderIG.INDEFINIDO;
     }
 
     //DEVUELVE DATOS: 
